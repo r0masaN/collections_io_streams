@@ -2,27 +2,25 @@
 #define PAIR_OSTREAM_HPP
 
 #include <ostream>
-#include <bits/stl_pair.h>
+#include <utility>
 
-#ifndef PREFIX
-#define PREFIX "{"
+#ifndef PAIR_PREFIX
+#define PAIR_PREFIX "{"
 #endif
 
-#ifndef DELIMITER
-#define DELIMITER ": "
+#ifndef PAIR_DELIMITER
+#define PAIR_DELIMITER ": "
 #endif
 
-#ifndef POSTFIX
-#define POSTFIX "}"
+#ifndef PAIR_POSTFIX
+#define PAIR_POSTFIX "}"
 #endif
 
-namespace std {
-    template<typename K, typename V>
-    ostream& operator<<(ostream& os, const pair<K, V>& p) {
-        os << PREFIX << p->first << DELIMITER << p->second << POSTFIX;
+template<typename K, typename V>
+inline std::ostream& operator<<(std::ostream& os, const std::pair<K, V>& p) {
+    os << PAIR_PREFIX << p.first << PAIR_DELIMITER << p.second << PAIR_POSTFIX;
 
-        return os;
-    }
+    return os;
 }
 
 #endif

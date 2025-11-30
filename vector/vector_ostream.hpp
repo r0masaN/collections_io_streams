@@ -4,30 +4,28 @@
 #include <ostream>
 #include <vector>
 
-#ifndef PREFIX
-#define PREFIX "["
+#ifndef VECTOR_PREFIX
+#define VECTOR_PREFIX "["
 #endif
 
-#ifndef DELIMITER
-#define DELIMITER ", "
+#ifndef VECTOR_DELIMITER
+#define VECTOR_DELIMITER ", "
 #endif
 
-#ifndef POSTFIX
-#define POSTFIX "]"
+#ifndef VECTOR_POSTFIX
+#define VECTOR_POSTFIX "]"
 #endif
 
-namespace std {
-    template<typename T>
-    ostream& operator<<(ostream& os, const vector<T>& v) {
-        os << PREFIX;
-        for (typename vector<T>::iterator it = v.begin(); it != v.end(); ++it) {
-            if (it != v.begin()) os << DELIMITER;
-            os << *it;
-        }
-        os << POSTFIX;
-
-        return os;
+template<typename T>
+inline std::ostream& operator<<(std::ostream& os, const std::vector<T>& v) {
+    os << VECTOR_PREFIX;
+    for (typename std::vector<T>::iterator it = v.begin(); it != v.end(); ++it) {
+        if (it != v.begin()) os << VECTOR_DELIMITER;
+        os << *it;
     }
+    os << VECTOR_POSTFIX;
+
+    return os;
 }
 
 #endif

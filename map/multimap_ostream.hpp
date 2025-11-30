@@ -3,31 +3,30 @@
 
 #include <ostream>
 #include <map>
+#include "../pair/pair_ostream.hpp"
 
-#ifndef PREFIX
-#define PREFIX "["
+#ifndef MAP_PREFIX
+#define MAP_PREFIX "["
 #endif
 
-#ifndef DELIMITER
-#define DELIMITER ", "
+#ifndef MAP_DELIMITER
+#define MAP_DELIMITER ", "
 #endif
 
-#ifndef POSTFIX
-#define POSTFIX "]"
+#ifndef MAP_POSTFIX
+#define MAP_POSTFIX "]"
 #endif
 
-namespace std {
-    template<typename K, typename V>
-    ostream& operator<<(ostream& os, const multimap<K, V>& mm) {
-        os << PREFIX;
-        for (typename map<K, V>::iterator it = mm.begin(); it != mm.end(); ++it) {
-            if (it != mm.begin()) os << DELIMITER;
-            os << "{" << it->first << ": " << it->second << "}";
-        }
-        os << POSTFIX;
-
-        return os;
+template<typename K, typename V>
+inline std::ostream& operator<<(std::ostream& os, const std::multimap<K, V>& mm) {
+    os << MAP_PREFIX;
+    for (typename std::multimap<K, V>::iterator it = mm.begin(); it != mm.end(); ++it) {
+        if (it != mm.begin()) os << MAP_DELIMITER;
+        os << *it;
     }
+    os << MAP_POSTFIX;
+
+    return os;
 }
 
 #endif

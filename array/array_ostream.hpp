@@ -4,30 +4,28 @@
 #include <ostream>
 #include <array>
 
-#ifndef PREFIX
-#define PREFIX "["
+#ifndef ARRAY_PREFIX
+#define ARRAY_PREFIX "["
 #endif
 
-#ifndef DELIMITER
-#define DELIMITER ", "
+#ifndef ARRAY_DELIMITER
+#define ARRAY_DELIMITER ", "
 #endif
 
-#ifndef POSTFIX
-#define POSTFIX "]"
+#ifndef ARRAY_POSTFIX
+#define ARRAY_POSTFIX "]"
 #endif
 
-namespace std {
-    template<typename T, size_t S>
-    ostream& operator<<(ostream& os, const array<T, S>& a) {
-        os << PREFIX;
-        for (typename array<T, S>::iterator it = a.begin(); it != a.end(); ++it) {
-            if (it != a.begin()) os << DELIMITER;
-            os << *it;
-        }
-        os << POSTFIX;
-
-        return os;
+template<typename T, size_t S>
+inline std::ostream& operator<<(std::ostream& os, const std::array<T, S>& a) {
+    os << ARRAY_PREFIX;
+    for (typename std::array<T, S>::iterator it = a.begin(); it != a.end(); ++it) {
+        if (it != a.begin()) os << ARRAY_DELIMITER;
+        os << *it;
     }
+    os << ARRAY_POSTFIX;
+
+    return os;
 }
 
 #endif

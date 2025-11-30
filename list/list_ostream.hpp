@@ -4,30 +4,28 @@
 #include <ostream>
 #include <list>
 
-#ifndef PREFIX
-#define PREFIX "["
+#ifndef LIST_PREFIX
+#define LIST_PREFIX "["
 #endif
 
-#ifndef DELIMITER
-#define DELIMITER ", "
+#ifndef LIST_DELIMITER
+#define LIST_DELIMITER ", "
 #endif
 
-#ifndef POSTFIX
-#define POSTFIX "]"
+#ifndef LIST_POSTFIX
+#define LIST_POSTFIX "]"
 #endif
 
-namespace std {
-    template<typename T>
-    ostream& operator<<(ostream& os, const list<T>& l) {
-        os << PREFIX;
-        for (typename list<T>::iterator it = l.begin(); it != l.end(); ++it) {
-            if (it != l.begin()) os << DELIMITER;
-            os << *it;
-        }
-        os << POSTFIX;
-
-        return os;
+template<typename T>
+inline std::ostream& operator<<(std::ostream& os, const std::list<T>& l) {
+    os << LIST_PREFIX;
+    for (typename std::list<T>::iterator it = l.begin(); it != l.end(); ++it) {
+        if (it != l.begin()) os << LIST_DELIMITER;
+        os << *it;
     }
+    os << LIST_POSTFIX;
+
+    return os;
 }
 
 #endif

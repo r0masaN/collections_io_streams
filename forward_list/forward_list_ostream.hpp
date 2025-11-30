@@ -4,30 +4,29 @@
 #include <ostream>
 #include <forward_list>
 
-#ifndef PREFIX
-#define PREFIX "["
+#ifndef LIST_PREFIX
+#define LIST_PREFIX "["
 #endif
 
-#ifndef DELIMITER
-#define DELIMITER ", "
+#ifndef LIST_DELIMITER
+#define LIST_DELIMITER ", "
 #endif
 
-#ifndef POSTFIX
-#define POSTFIX "]"
+#ifndef LIST_POSTFIX
+#define LIST_POSTFIX "]"
 #endif
 
-namespace std {
-    template<typename T>
-    ostream& operator<<(ostream& os, const forward_list<T>& fl) {
-        os << PREFIX;
-        for (typename forward_list<T>::iterator it = fl.begin(); it != fl.end(); ++it) {
-            if (it != fl.begin()) os << DELIMITER;
-            os << *it;
-        }
-        os << POSTFIX;
-
-        return os;
+template<typename T>
+inline std::ostream& operator<<(std::ostream& os, const std::forward_list<T>& fl) {
+    os << LIST_PREFIX;
+    for (typename std::forward_list<T>::iterator it = fl.begin(); it != fl.end(); ++it) {
+        if (it != fl.begin()) os << LIST_DELIMITER;
+        os << *it;
     }
+    os << LIST_POSTFIX;
+
+    return os;
 }
+
 
 #endif

@@ -4,30 +4,28 @@
 #include <ostream>
 #include <set>
 
-#ifndef PREFIX
-#define PREFIX "["
+#ifndef SET_PREFIX
+#define SET_PREFIX "["
 #endif
 
-#ifndef DELIMITER
-#define DELIMITER ", "
+#ifndef SET_DELIMITER
+#define SET_DELIMITER ", "
 #endif
 
-#ifndef POSTFIX
-#define POSTFIX "]"
+#ifndef SET_POSTFIX
+#define SET_POSTFIX "]"
 #endif
 
-namespace std {
-    template<typename T>
-    ostream& operator<<(ostream& os, const multiset<T>& ms) {
-        os << PREFIX;
-        for (typename multiset<T>::iterator it = ms.begin(); it != ms.end(); ++it) {
-            if (it != ms.begin()) os << DELIMITER;
-            os << *it;
-        }
-        os << POSTFIX;
-
-        return os;
+template<typename T>
+inline std::ostream& operator<<(std::ostream& os, const std::multiset<T>& ms) {
+    os << SET_PREFIX;
+    for (typename std::multiset<T>::iterator it = ms.begin(); it != ms.end(); ++it) {
+        if (it != ms.begin()) os << SET_DELIMITER;
+        os << *it;
     }
+    os << SET_POSTFIX;
+
+    return os;
 }
 
 #endif
