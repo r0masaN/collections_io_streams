@@ -1,0 +1,33 @@
+#ifndef UNORDERED_MULTISET_OSTREAM
+#define UNORDERED_MULTISET_OSTREAM
+
+#include <ostream>
+#include <unordered_set>
+
+#ifndef PREFIX
+#define PREFIX "["
+#endif
+
+#ifndef DELIMITER
+#define DELIMITER ", "
+#endif
+
+#ifndef POSTFIX
+#define POSTFIX "]"
+#endif
+
+namespace std {
+    template<typename T>
+    ostream& operator<<(ostream& os, const unordered_multiset<T>& ums) {
+        os << PREFIX;
+        for (typename unordered_multiset<T>::iterator it = ums.begin(); it != ums.end(); ++it) {
+            if (it != ums.begin()) os << DELIMITER;
+            os << *it;
+        }
+        os << POSTFIX;
+
+        return os;
+    }
+}
+
+#endif

@@ -1,0 +1,33 @@
+#ifndef SET_OSTREAM
+#define SET_OSTREAM
+
+#include <ostream>
+#include <set>
+
+#ifndef PREFIX
+#define PREFIX "["
+#endif
+
+#ifndef DELIMITER
+#define DELIMITER ", "
+#endif
+
+#ifndef POSTFIX
+#define POSTFIX "]"
+#endif
+
+namespace std {
+    template<typename T>
+    ostream& operator<<(ostream& os, const set<T>& s) {
+        os << PREFIX;
+        for (typename set<T>::iterator it = s.begin(); it != s.end(); ++it) {
+            if (it != s.begin()) os << DELIMITER;
+            os << *it;
+        }
+        os << POSTFIX;
+
+        return os;
+    }
+}
+
+#endif

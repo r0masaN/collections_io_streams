@@ -1,0 +1,33 @@
+#ifndef UNORDERED_SET_OSTREAM
+#define UNORDERED_SET_OSTREAM
+
+#include <ostream>
+#include <unordered_set>
+
+#ifndef PREFIX
+#define PREFIX "["
+#endif
+
+#ifndef DELIMITER
+#define DELIMITER ", "
+#endif
+
+#ifndef POSTFIX
+#define POSTFIX "]"
+#endif
+
+namespace std {
+    template<typename T>
+    ostream& operator<<(ostream& os, const unordered_set<T>& us) {
+        os << PREFIX;
+        for (typename unordered_set<T>::iterator it = us.begin(); it != us.end(); ++it) {
+            if (it != us.begin()) os << DELIMITER;
+            os << *it;
+        }
+        os << POSTFIX;
+
+        return os;
+    }
+}
+
+#endif

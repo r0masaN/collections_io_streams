@@ -1,0 +1,33 @@
+#ifndef INITIALIZER_LIST_OSTREAM
+#define INITIALIZER_LIST_OSTREAM
+
+#include <ostream>
+#include <initializer_list>
+
+#ifndef PREFIX
+#define PREFIX "["
+#endif
+
+#ifndef DELIMITER
+#define DELIMITER ", "
+#endif
+
+#ifndef POSTFIX
+#define POSTFIX "]"
+#endif
+
+namespace std {
+    template<typename T>
+    ostream& operator<<(ostream& os, const initializer_list<T>& il) {
+        os << PREFIX;
+        for (typename initializer_list<T>::iterator it = il.begin(); it != il.end(); ++it) {
+            if (it != il.begin()) os << DELIMITER;
+            os << *it;
+        }
+        os << POSTFIX;
+
+        return os;
+    }
+}
+
+#endif

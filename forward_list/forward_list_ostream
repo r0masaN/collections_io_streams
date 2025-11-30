@@ -1,0 +1,33 @@
+#ifndef FORWARD_LIST_OSTREAM
+#define FORWARD_LIST_OSTREAM
+
+#include <ostream>
+#include <forward_list>
+
+#ifndef PREFIX
+#define PREFIX "["
+#endif
+
+#ifndef DELIMITER
+#define DELIMITER ", "
+#endif
+
+#ifndef POSTFIX
+#define POSTFIX "]"
+#endif
+
+namespace std {
+    template<typename T>
+    ostream& operator<<(ostream& os, const forward_list<T>& fl) {
+        os << PREFIX;
+        for (typename forward_list<T>::iterator it = fl.begin(); it != fl.end(); ++it) {
+            if (it != fl.begin()) os << DELIMITER;
+            os << *it;
+        }
+        os << POSTFIX;
+
+        return os;
+    }
+}
+
+#endif
