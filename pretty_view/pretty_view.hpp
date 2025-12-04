@@ -21,14 +21,14 @@ namespace rmsn {
 
     // is the type is a string-like (need to ensure that we won't write a string-like type char by char like it's array of chars)
     template<typename T>
-    concept is_str_like = std::is_convertible_v<base_t<T>, std::string> || std::is_convertible_v<base_t<T>, std::string_view>;
+    concept is_string = std::is_convertible_v<base_t<T>, std::string> || std::is_convertible_v<base_t<T>, std::string_view>;
 
     // is the type is a collection-like (has iterators)
     template<typename T>
     concept is_collection = requires (const base_t<T>& t) {
         std::begin(t); // unified way to get an iterator (instead of simple t.begin() that, for example, couldn't be
         std::end(t); // invoked on raw arrays
-    } && !is_str_like<T>; // cuz std::string, std::string_view, char arrays, const char * also can get iterators
+    } && !is_string<T>; // cuz std::string, std::string_view, char arrays, const char * also can get iterators
 
     // is the type is a tuple-like (can invoke std::get<N>(), std::tuple_size<T>)
     template<typename T>
