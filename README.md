@@ -14,7 +14,7 @@ And I've spent literally 6+ hours in a row for this 🤪
 
 ## Usage of the `pretty_view`
 ```c++
-ostream << ... << rmsn::pretty_view(N) << ...;
+std::ostream << rmsn::pretty_view(N);
 ```
 where N is any collection or tuple-like thing (thanks to ADL nothing bad happens with this overloading)
 Structure of struct `pretty_view`:
